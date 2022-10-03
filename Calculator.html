@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            font-family: Gotham Rounded, sans-serif;
+            font-weight: normal;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #CBCE91FF, #EA738DFF);
+        }
+
+        .calculator-grid {
+            display: grid;
+            justify-content: center;
+            align-content: center;
+            min-height: 100vh;
+            grid-template-columns: repeat(4, 100px);
+            grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+        }
+
+        .calculator-grid>button {
+            cursor: pointer;
+            font-size: 2rem;
+            border: 1px, solid #FFFFFF;
+            outline: none;
+            background-color: rbga(255, 255, 255, 0.75);
+        }
+
+        .calculator-grid>button:hover {
+            background-color: #a9a9a9;
+        }
+
+        .span-two {
+            grid-column: span 2;
+            color: #adf802;
+            background-color: rgba(139, 0, 139, 0.8);
+        }
+
+        .output {
+            grid-column: 1 / -1;
+            background-color: rgba(0, 0, 0, 0.75);
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            flex-direction: column;
+            padding: 10px;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+        .output .previous-operand {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.5rem;
+        }
+
+        .output .current-operand {
+            color: white;
+            font-size: 2.5rem;
+        }
+    </style>    
+</head>
+
+<body>
+    <h3>
+        <a href="index.html">Back to Home page</a>
+    </h3>
+    <div id="calculator-grid" class="calculator-grid">  
+        <div class="output">
+            <div id="previous-operand" class="previous-operand"></div>
+            <div id="current-operand" class="current-operand"></div>
+        </div>
+        <button onclick="allClear()" id="AC" value="" class="number span-two">AC</button>
+        <button onclick="clearOne()" id="DEL" value="" class="number delete">DEL</button>
+        <button onclick="calculator('/')" id="divide" value="÷" class="number">÷</button>
+        <button onclick="calculator(1)" id="number1" value="1" class="number">1</button>
+        <button onclick="calculator(2)" id="number2" value="2" class="number">2</button>
+        <button onclick="calculator(3)" id="number3" value="3" class="number">3</button>
+        <button onclick="calculator('*')" id="multiply" value="*" class="number multiply">*</button>
+        <button onclick="calculator(4)" id="number4" value="4" class="number">4</button>
+        <button onclick="calculator('5')" id="number5" value="5" class="number">5</button>
+        <button onclick="calculator('6')" id="number6" value="6" class="number">6</button>
+        <button onclick="calculator('+')" id="plus" value="+" class="number plus">+</button>
+        <button onclick="calculator('7')" id="number7" value="7" class="number">7</button>
+        <button onclick="calculator('8')" id="number8" value="8" class="number">8</button>
+        <button onclick="calculator('9')" id="number9" value="9" class="number">9</button>
+        <button onclick="calculator('-')" id="minus" value="-" class="number minus">-</button>
+        <button onclick="calculator('.')" id="dot" value="." class="number dot">.</button>
+        <button onclick="calculator('0')" id="zero" value="0" class="number">0</button>
+        <button onclick="output()" id="equal" value="=" class="number span-two">=</button>
+    </div>
+    <script>
+
+        function calculator(val) {
+            document.getElementById("current-operand").innerText += val;  
+            console.log(val)
+            return val
+        }
+        function output() {
+            let x = document.getElementById("current-operand").innerText;
+            let y = eval(x);
+            document.getElementById("current-operand").innerText = y;
+            document.getElementById("previous-operand").innerText = y
+        }
+        function allClear() {
+            document.getElementById("current-operand").innerText = ""
+        }
+        function clearOne() {
+            let dlt = document.getElementById("current-operand").innerText;
+            let clearOn = dlt.slice(0, -1);
+            document.getElementById("current-operand").innerText = clearOn;
+        }
+        function moveToPreviousOperand() {
+            document.getElementById("previous-operand").innerText = y
+        }
+        
+
+
+
+
+
+    </script>
+</body>
+
+</html>
